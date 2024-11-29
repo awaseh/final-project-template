@@ -2,15 +2,16 @@
 
 namespace app\controllers;
 
-class MainController extends Controller {
+class MainController {
 
     public function homepage() {
-        //remember to route relative to index.php
-        //require page and exit to return an HTML page
-        $this->returnView('./assets/views/main/homepage.html');
+        // Correct relative path to homepage.html
+        $filePath = __DIR__ . '/../../public/assets/views/main/homepage.html';
+        if (file_exists($filePath)) {
+            readfile($filePath);
+        } else {
+            echo "Error: File not found at $filePath";
+        }
+        exit();
     }
-
-    public function notFound() {
-    }
-
 }

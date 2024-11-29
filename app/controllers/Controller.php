@@ -14,6 +14,4 @@ abstract class Controller {
         echo json_encode($json);
         exit();
     }
-
-
 }

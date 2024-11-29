@@ -8,8 +8,7 @@ use app\controllers\UserController;
 class Router {
     public $urlArray;
 
-    function __construct()
-    {
+    function __construct() {
         $this->urlArray = $this->routeSplit();
         $this->handleMainRoutes();
         $this->handleUserRoutes();
@@ -28,15 +27,16 @@ class Router {
     }
 
     protected function handleUserRoutes() {
-        if ($this->urlArray[1] === 'users' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+        if ($this->urlArray[1] === 'api' && $this->urlArray[2] === 'users') {
             $userController = new UserController();
-            $userController->usersView();
-        }
 
-        //give json/API requests a api prefix
-        if ($this->urlArray[1] === 'api' && $this->urlArray[2] === 'users' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-            $userController = new UserController();
-            $userController->getUsers();
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                $userController->getUsers();
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $userController->saveUser();
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+                $userController->deleteUser();
+            }
         }
     }
 }

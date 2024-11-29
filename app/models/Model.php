@@ -1,31 +1,28 @@
 <?php
 
-namespace app\models;
+namespace app\core;
 
-abstract class Model {
+use PDO;
 
-    public function findAll() {
-        $query = "select * from $this->table";
-        return $this->query($query);
+class Model {
+    protected $pdo;
+    protected $table;
+
+    public function __construct() {
+        $this->pdo = new PDO("mysql:host=localhost;dbname=finalproject3300", "root", "root");
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    private function connect() {
-        $string = "mysql:hostname=" . DBHOST . ";dbname=" . DBNAME;
-        $con = new \PDO($string, DBUSER, DBPASS);
-        return $con;
+    public function selectAll() {
+        $stmt = $this->pdo->prepare("SELECT * FROM {$this->table}");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function query($query, $data = []) {
-        $con = $this->connect();
-        $stm = $con->prepare($query);
-        $check = $stm->execute($data);
-        if ($check) {
-            $result = $stm->fetchAll(\PDO::FETCH_OBJ);
-            if (is_array($result) && count($result)) {
-                return $result;
-            }
-        }
-        return false;
+    public function insert($data) {
+        $fields = implode(',', array_keys($data));
+        $placeholders = ':' . implode(',:', array_keys($data));
+        $stmt = $this->pdo->prepare("INSERT INTO {$this->table} ({$fields}) VALUES ({$placeholders})");
+        return $stmt->execute($data);
     }
-
 }

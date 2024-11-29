@@ -1,0 +1,115 @@
+/* General container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fdfdfd; /* Light background for the container */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for better depth */
+    text-align: center; /* Center-align content */
+    color: #333; /* Neutral text color */
+}
+
+/* Card styling */
+.card {
+    background-color: #fefefe; /* Slightly off-white for contrast */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Smooth elevation effect */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 20px auto; /* Add spacing between cards */
+    padding: 15px;
+    color: #4a4a4a;
+}
+
+.card:hover {
+    transform: translateY(-8px); /* Enhanced lift effect */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Table styling */
+.table {
+    margin-bottom: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #4a4a4a;
+}
+
+.table th,
+.table td {
+    text-align: center; /* Centered table text */
+    padding: 15px; /* Add more space for readability */
+    border-bottom: 1px solid #dcdcdc; /* Light border for rows */
+}
+
+.table th {
+    background-color: #6c63ff; /* Vibrant purple background for header */
+    color: #ffffff; /* White text for contrast */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Slightly increased spacing for text */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.table td {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+/* Form control focus styling */
+.form-control:focus {
+    border-color: #6c63ff; /* Match the purple color */
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.5); /* Purple glow effect */
+    outline: none;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Buttons styling */
+.button {
+    background-color: #6c63ff; /* Primary button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #574bd8; /* Darker shade on hover */
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 0.9rem; /* Smaller font size for smaller screens */
+    }
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
