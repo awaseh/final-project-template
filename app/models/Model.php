@@ -9,7 +9,7 @@ class Model {
     protected $table;
 
     public function __construct() {
-        $this->pdo = new PDO("mysql:host=localhost;dbname=finalproject3300", "root", "root");
+        $this->pdo = new PDO("mysql:host=localhost;dbname=finalproject3300", "user name", "password name");
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
