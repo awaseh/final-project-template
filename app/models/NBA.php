@@ -8,7 +8,7 @@ class NBA {
     private $apiKey; // Store the API key for authentication
 
     public function __construct() {
-        // Set the API key for authentication (this should be defined in setup.php)
+        // Set the API key for authentication (this is defined in the config/setup.php or .env)
         $this->apiKey = BALLDONTLIE_API_KEY; // Use the constant from setup.php
     }
 
@@ -58,7 +58,7 @@ class NBA {
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET", // Use GET request
             CURLOPT_HTTPHEADER => [
-                "Authorization: Bearer " . $this->apiKey // API key authorization header
+                "Authorization: " . $this->apiKey // Use the API key directly in the header
             ],
         ]);
 
