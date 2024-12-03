@@ -10,14 +10,13 @@ class Model {
     protected $table;
 
     public function __construct() {
-        // Load environment variables
-        require_once __DIR__ . '/../../config.php';
-
-        // Get DB credentials from environment variables
-        $dbHost = $_ENV['DBHOST'];
-        $dbName = $_ENV['DBNAME'];
-        $dbUser = $_ENV['DBUSER'];
-        $dbPassword = $_ENV['DBPASS'];
+        // Load environment variables (already done in setup.php, so no need to require it here)
+        
+        // Use constants directly instead of $_ENV
+        $dbHost = DBHOST;
+        $dbName = DBNAME;
+        $dbUser = DBUSER;
+        $dbPassword = DBPASS;
 
         // Set up the PDO connection with error handling
         try {
@@ -46,4 +45,5 @@ class Model {
         return $stmt->execute($data);
     }
 }
+
 

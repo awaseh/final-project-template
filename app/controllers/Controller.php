@@ -1,17 +1,11 @@
 <?php
 
-namespace app\controllers;
+namespace app\core;
 
-abstract class Controller {
-
-    public function returnView($pathToView) {
-        require $pathToView;
-        exit();
-    }
-
-    public function returnJSON($json) {
-        header("Content-Type: application/json");
-        echo json_encode($json);
-        exit();
+class Controller {
+ 
+    protected function render($view, $data = []) {
+        extract($data);
+        require_once __DIR__ . "/../../public/views/{$view}.php";
     }
 }

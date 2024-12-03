@@ -8,8 +8,8 @@ class NBA {
     private $apiKey; // Store the API key for authentication
 
     public function __construct() {
-        // Set the API key for authentication (this should be in your .env file ideally)
-        $this->apiKey = $_ENV['BALLDONTLIE_API_KEY']; // Load from environment variable
+        // Set the API key for authentication (this should be defined in setup.php)
+        $this->apiKey = BALLDONTLIE_API_KEY; // Use the constant from setup.php
     }
 
     // Fetch NBA teams
@@ -79,3 +79,4 @@ class NBA {
         return $response; // Return the API response
     }
 }
+

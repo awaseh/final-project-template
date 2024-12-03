@@ -64,19 +64,8 @@ class Router {
             if ($this->urlArray[3] === 'players' && $_SERVER['REQUEST_METHOD'] === 'GET') {
                 $nbaController->showPlayers(); // Show players
             }
-
-            // Serve the HTML page for teams view
-            if ($this->urlArray[3] === 'teams' && $_SERVER['REQUEST_METHOD'] === 'GET' && isset($this->urlArray[4]) && $this->urlArray[4] === 'view') {
-                // Serve the teamsView.html file
-                echo file_get_contents(__DIR__ . '/../public/views/nba/teamsView.html');
-            }
-
-            // Serve the HTML page for players view
-            if ($this->urlArray[3] === 'players' && $_SERVER['REQUEST_METHOD'] === 'GET' && isset($this->urlArray[4]) && $this->urlArray[4] === 'view') {
-                // Serve the playersView.html file
-                echo file_get_contents(__DIR__ . '/../public/views/nba/playersView.html');
-            }
         }
     }
 }
+
 

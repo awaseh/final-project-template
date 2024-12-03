@@ -2,32 +2,26 @@
 
 namespace app\controllers;
 
+use app\core\Controller;
 use app\models\NBA;
 
 class NBAController extends Controller {
 
-    // Method to fetch NBA teams
+    // Fetch NBA Teams and return as JSON
     public function showTeams() {
         $nba = new NBA();
-        $teams = $nba->getTeams(); // Fetch NBA teams
+        $teams = $nba->getTeams();
 
-        if (empty($teams)) {
-            $this->returnJSON(['message' => 'No teams available']); // If no data, return a message
-        } else {
-            $this->returnJSON($teams); // Return teams data as JSON
-        }
+        header('Content-Type: application/json');
+        echo json_encode($teams);
     }
 
-    // Method to fetch NBA players
+    // Fetch NBA Players and return as JSON
     public function showPlayers() {
         $nba = new NBA();
-        $players = $nba->getPlayers(); // Fetch NBA players
+        $players = $nba->getPlayers();
 
-        if (empty($players)) {
-            $this->returnJSON(['message' => 'No players available']); // If no data, return a message
-        } else {
-            $this->returnJSON($players); // Return players data as JSON
-        }
+        header('Content-Type: application/json');
+        echo json_encode($players);
     }
 }
-
