@@ -1,5 +1,6 @@
 <?php
 
+// Load environment variables from the .env file
 function loadEnv() {
     $envFile = __DIR__ . '/.env';
     
@@ -15,5 +16,11 @@ function loadEnv() {
     }
 }
 
-// Call the function to load the variables
+// Load the environment variables
 loadEnv();
+
+// Check if the API key for BallDon'tLie is loaded
+if (!isset($_ENV['BALLDONTLIE_API_KEY'])) {
+    throw new Exception("API Key for BallDon'tLie is not set.");
+}
+
