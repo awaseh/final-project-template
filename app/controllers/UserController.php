@@ -20,7 +20,7 @@ class UserController {
     // Get all users from the database
     public function getUsers() {
         $user = new User();
-        $users = $user->selectAll(); // Assuming this method exists in the User model
+        $users = $user->selectAll(); // this method exists in the User model
         
         // Debugging: Log the fetched users
         error_log("Fetched users: " . print_r($users, true));
@@ -39,7 +39,7 @@ class UserController {
         // Log the input data for debugging purposes
         error_log("Save user input: " . print_r($data, true));
 
-        // Validate input: Ensure name and email are provided
+        // Validate input: name and email are provided
         if (!isset($data['name']) || !isset($data['email'])) {
             header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'Name and email are required.']);
@@ -47,7 +47,7 @@ class UserController {
         }
 
         // Insert the user into the database
-        $result = $user->insert($data); // Assuming the insert method exists in the User model
+        $result = $user->insert($data); // insert method exists in the User model
         if ($result) {
             header('Content-Type: application/json');
             echo json_encode(['success' => true]);
@@ -66,7 +66,7 @@ class UserController {
         // Log the input data for debugging purposes
         error_log("Delete user input: " . print_r($data, true));
 
-        // Validate input: Ensure user ID is provided
+        // Validate input: user ID is provided
         if (!isset($data['id'])) {
             header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'User ID is required.']);
@@ -74,7 +74,7 @@ class UserController {
         }
 
         // Delete the user from the database
-        $result = $user->deleteUserById($data['id']); // Assuming this method exists in the User model
+        $result = $user->deleteUserById($data['id']); // this method exists in the User model
         if ($result) {
             header('Content-Type: application/json');
             echo json_encode(['success' => true]);
