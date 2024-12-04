@@ -15,20 +15,18 @@ class Router {
         $this->handleMainRoutes(); // Handle the homepage route
         $this->handleUserRoutes(); // Handle user-related API routes
         $this->handleNBARoutes();  // Handle NBA API routes (teams and players)
+        $this->handleViewRoutes(); // Handle NBA view routes (playersView, teamsView)
     }
 
     // Split the URL into an array for easy parsing
     protected function routeSplit() {
-        // Get the request URL and remove any query parameters
         $removeQueryParams = strtok($_SERVER["REQUEST_URI"], '?');
-        // Split the URL into parts by '/'
         return explode("/", $removeQueryParams);
     }
 
     // Handle the main route (homepage)
     protected function handleMainRoutes() {
         if ($this->urlArray[1] === '' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-            // Instantiate MainController and call the homepage method
             $mainController = new MainController();
             $mainController->homepage();
         }
@@ -52,20 +50,46 @@ class Router {
     // Handle NBA-related routes (teams and players)
     protected function handleNBARoutes() {
         if ($this->urlArray[1] === 'api' && $this->urlArray[2] === 'nba') {
-
             $nbaController = new NBAController();
 
-            // Route for teams
             if ($this->urlArray[3] === 'teams' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-                $nbaController->showTeams(); // Show teams
+                $nbaController->showTeams();
             }
 
-            // Route for players
             if ($this->urlArray[3] === 'players' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-                $nbaController->showPlayers(); // Show players
+                $nbaController->showPlayers();
             }
         }
     }
+
+    // Handle NBA View Routes (playersView, teamsView)
+    protected function handleViewRoutes() {
+        // Route for players view
+        if ($this->urlArray[1] === 'views' && $this->urlArray[2] === 'nba' && $this->urlArray[3] === 'playersView.html') {
+            // Include the players view HTML
+            $filePath = __DIR__ . '/../../public/assets/views/nba/playersView.html';
+            if (file_exists($filePath)) {
+                readfile($filePath);
+            } else {
+                echo "Error: playersView.html not found.";
+            }
+            exit();
+        }
+
+        // Route for teams view
+        if ($this->urlArray[1] === 'views' && $this->urlArray[2] === 'nba' && $this->urlArray[3] === 'teamsView.html') {
+            // Include the teams view HTML
+            $filePath = __DIR__ . '/../../public/assets/views/nba/teamsView.html';
+            if (file_exists($filePath)) {
+                readfile($filePath);
+            } else {
+                echo "Error: teamsView.html not found.";
+            }
+            exit();
+        }
+    }
 }
+
+
 
 

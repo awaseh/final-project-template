@@ -12,32 +12,42 @@ class NBA {
         $this->apiKey = BALLDONTLIE_API_KEY; // Use the constant from setup.php
     }
 
-    // Fetch NBA teams
-    public function getTeams() {
+    // Fetch NBA teams with pagination
+    public function getTeams($cursor = null) {
+        $url = $this->apiUrlTeams;
+        if ($cursor) {
+            $url .= '?cursor=' . $cursor; // Append cursor for pagination
+        }
+
         // Send the cURL request and get the response
-        $response = $this->makeRequest($this->apiUrlTeams);
+        $response = $this->makeRequest($url);
 
         // Check if response is valid, return the teams data
         if ($response) {
             $data = json_decode($response, true);
             if (isset($data['data'])) {
-                return $data['data']; // Return teams data
+                return $data; // Return teams data with pagination metadata
             }
         }
 
         return []; // Return an empty array if the request fails or if no 'data' found
     }
 
-    // Fetch NBA players
-    public function getPlayers() {
+    // Fetch NBA players with pagination
+    public function getPlayers($cursor = null) {
+        $url = $this->apiUrlPlayers;
+        if ($cursor) {
+            $url .= '?cursor=' . $cursor; // Append cursor for pagination
+        }
+
         // Send the cURL request and get the response
-        $response = $this->makeRequest($this->apiUrlPlayers);
+        $response = $this->makeRequest($url);
 
         // Check if response is valid, return the players data
         if ($response) {
             $data = json_decode($response, true);
             if (isset($data['data'])) {
-                return $data['data']; // Return players data
+                return $data; // Return players data with pagination metadata
             }
         }
 

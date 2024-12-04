@@ -5,18 +5,23 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    background-image: url('/assets/images/players.png');
+    background-size: cover; /* Cover the whole page with the background image */
+    background-position: center;
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
 }
 
 h1 {
     text-align: center;
     margin-top: 20px;
+    color: #333;
 }
 
 #players-container {
     max-width: 800px;
     margin: 20px auto;
     padding: 10px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -33,4 +38,17 @@ li {
     background-color: #fafafa;
     border: 1px solid #ddd;
     border-radius: 4px;
+    color: black; /* Set player name color to black */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #players-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    li {
+        font-size: 14px;
+    }
 }

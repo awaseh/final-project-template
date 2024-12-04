@@ -9,8 +9,9 @@ class NBAController extends Controller {
 
     // Fetch NBA Teams and return as JSON
     public function showTeams() {
+        $cursor = isset($_GET['cursor']) ? $_GET['cursor'] : null;
         $nba = new NBA();
-        $teams = $nba->getTeams();
+        $teams = $nba->getTeams($cursor);
 
         header('Content-Type: application/json');
         echo json_encode($teams);
@@ -18,8 +19,9 @@ class NBAController extends Controller {
 
     // Fetch NBA Players and return as JSON
     public function showPlayers() {
+        $cursor = isset($_GET['cursor']) ? $_GET['cursor'] : null;
         $nba = new NBA();
-        $players = $nba->getPlayers();
+        $players = $nba->getPlayers($cursor);
 
         header('Content-Type: application/json');
         echo json_encode($players);
